@@ -1,6 +1,8 @@
 module utils;
 
-public import std.file; // For SpanMode
+import std.stdio;
+
+public import std.file : SpanMode, dirEntries, DirEntry;
 import std.algorithm;
 import std.array;
 
@@ -11,4 +13,14 @@ auto getDirList(const string name, SpanMode mode)
 		.array;
 
 	return sort(dirs);
+}
+
+void print(const string value)
+{
+	write(value);
+}
+
+void printLn(const string value)
+{
+	writeln(value);
 }

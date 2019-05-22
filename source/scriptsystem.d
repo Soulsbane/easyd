@@ -12,8 +12,23 @@ class ScriptSystem
 {
 	this()
 	{
+		// Standard Library Functions.
+		globals_.print = &print;
+		globals_.printLn = &printLn;
+
 		globals_.addCommand = &addCommand;
 		globals_.getDubVersion = &getDubVersion;
+		globals_.getAddtionalCommands = &getAddtionalCommands;
+	}
+
+	void setupAdditionalCommands(const string additionalCommands)
+	{
+		additionalCommands_ = additionalCommands;
+	}
+
+	string getAddtionalCommands()
+	{
+		return additionalCommands_;
 	}
 
 	void addCommand(const string name, const string command)
@@ -50,4 +65,5 @@ class ScriptSystem
 private:
 	var globals_ = var.emptyObject;
 	string[string] commands_;
+	string additionalCommands_;
 }

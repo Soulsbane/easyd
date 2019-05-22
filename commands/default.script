@@ -1,2 +1,3 @@
+printLn("Hello from script");
 addCommand("release", "--build=release");
 addCommand("ldc2", "--build=release --compiler=ldc2");
