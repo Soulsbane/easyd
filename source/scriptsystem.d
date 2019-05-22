@@ -8,7 +8,6 @@ import arsd.jsvar;
 import api;
 import utils;
 
-// Use interpretFile(File file, var globals)
 class ScriptSystem
 {
 	this()
