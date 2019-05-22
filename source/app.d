@@ -14,5 +14,8 @@ void main(string[] arguments)
 	}
 
 	auto scriptSystem_ = new ScriptSystem;
+
+	scriptSystem_.loadScripts();
+	debug scriptSystem_.dumpCommands();
 }
 

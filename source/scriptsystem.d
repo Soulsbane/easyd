@@ -25,6 +25,7 @@ class ScriptSystem
 		}
 		else
 		{
+			debug writeln("Added Command: ", name);
 			commands_[name] = command;
 		}
 	}
@@ -39,10 +40,11 @@ class ScriptSystem
 
 	void loadScripts()
 	{
-		auto files = getDirList("./commands", SpanMode.shallow);
+		auto files = getDirList("commands", SpanMode.shallow);
+
 		foreach(file; files)
 		{
-			//interpretFile(file, globals_);
+			interpretFile(File(file.name), globals_);
 		}
 	}
 
