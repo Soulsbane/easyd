@@ -15,10 +15,10 @@ class ScriptSystem
 		// Standard Library Functions.
 		registerStdFunctions(globals_);
 
-		globals_.addCommand = &addCommand;
-		globals_.getDubVersion = &getDubVersion;
-		globals_.getAddtionalCommands = &getAddtionalCommands;
-		globals_.isCommandNameAvailable = &isCommandNameAvailable;
+		registerFunction!"addCommand";
+		registerFunction!"getDubVersion";
+		registerFunction!"getAddtionalCommands";
+		registerFunction!"isCommandNameAvailable";
 	}
 
 	void setupAdditionalCommands(string[] additionalCommands)
@@ -70,6 +70,12 @@ class ScriptSystem
 		{
 			interpretFile(File(file.name), globals_);
 		}
+	}
+
+	void registerFunction(alias name)()
+	{
+		immutable func = "globals_." ~ name ~ " = &" ~ name ~ ";";
+		mixin(func);
 	}
 
 private:
