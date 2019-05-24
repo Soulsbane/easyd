@@ -1,10 +1,17 @@
 module utils;
 
 import std.stdio;
+import arsd.jsvar;
 
 public import std.file : SpanMode, dirEntries, DirEntry;
 import std.algorithm;
 import std.array;
+
+void registerStdFunctions(var funcs)
+{
+	funcs.print = &print;
+	funcs.printLn = &printLn;
+}
 
 auto getDirList(const string name, SpanMode mode)
 {

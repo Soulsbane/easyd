@@ -13,8 +13,7 @@ class ScriptSystem
 	this()
 	{
 		// Standard Library Functions.
-		globals_.print = &print;
-		globals_.printLn = &printLn;
+		registerStdFunctions(globals_);
 
 		globals_.addCommand = &addCommand;
 		globals_.getDubVersion = &getDubVersion;
