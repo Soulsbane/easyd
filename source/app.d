@@ -16,7 +16,7 @@ void main(string[] arguments)
 	}
 	else
 	{
-		scriptSystem_.setupAdditionalCommands(commands.join(" "));
+		scriptSystem_.setupAdditionalCommands(commands);
 		// TODO: Pass the additional commands to the script.
 	}
 

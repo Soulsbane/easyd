@@ -22,12 +22,12 @@ class ScriptSystem
 		globals_.isCommandNameAvailable = &isCommandNameAvailable;
 	}
 
-	void setupAdditionalCommands(const string additionalCommands)
+	void setupAdditionalCommands(string[] additionalCommands)
 	{
 		additionalCommands_ = additionalCommands;
 	}
 
-	string getAddtionalCommands()
+	string[] getAddtionalCommands()
 	{
 		return additionalCommands_;
 	}
@@ -76,5 +76,5 @@ class ScriptSystem
 private:
 	var globals_ = var.emptyObject;
 	string[string] commands_;
-	string additionalCommands_;
+	string[] additionalCommands_;
 }
