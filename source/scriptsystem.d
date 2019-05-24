@@ -19,6 +19,7 @@ class ScriptSystem
 		globals_.addCommand = &addCommand;
 		globals_.getDubVersion = &getDubVersion;
 		globals_.getAddtionalCommands = &getAddtionalCommands;
+		globals_.isCommandNameAvailable = &isCommandNameAvailable;
 	}
 
 	void setupAdditionalCommands(const string additionalCommands)
@@ -42,6 +43,16 @@ class ScriptSystem
 			debug writeln("Added Command: ", name);
 			commands_[name] = command;
 		}
+	}
+
+	bool isCommandNameAvailable(const string name)
+	{
+		if(name in commands_)
+		{
+			return false;
+		}
+
+		return true;
 	}
 
 	void dumpCommands()
