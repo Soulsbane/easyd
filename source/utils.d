@@ -1,22 +1,17 @@
 module utils;
 
 import std.stdio;
-import arsd.jsvar;
-
-public import std.file : SpanMode, dirEntries, DirEntry;
 import std.algorithm;
 import std.array;
+public import std.file : SpanMode, dirEntries, DirEntry;
 
-private string registerStdFunction(alias name)()
-{
-	immutable func = "funcs." ~ name ~ " = &" ~ name ~ ";";
-	return func;
-}
+import arsd.jsvar;
+import register;
 
 void registerStdFunctions(var funcs)
 {
-	mixin(registerStdFunction!"print");
-	mixin(registerStdFunction!"printLn");
+	mixin(registerFunction!"print");
+	mixin(registerFunction!"printLn");
 }
 
 auto getDirList(const string name, SpanMode mode)

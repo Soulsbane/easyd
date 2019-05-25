@@ -14,6 +14,7 @@ class ScriptSystem
 	{
 		// Standard Library Functions.
 		registerStdFunctions(globals_);
+		registerAPIFunctions(globals_);
 
 		registerFunction!"addCommand";
 		registerFunction!"getDubVersion";
