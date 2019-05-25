@@ -6,7 +6,7 @@ import register;
 void registerAPIFunctions(var funcs)
 {
 	mixin(registerFunction!"getDubVersion");
-	mixin(registerFunction!"isExeAvailable");
+	mixin(registerFunction!"isInstalled");
 }
 
 auto getDubVersion()
@@ -14,7 +14,7 @@ auto getDubVersion()
 	return "1.15";
 }
 
-bool isExeAvailable()
+bool isInstalled()
 {
 	return true;
 }
