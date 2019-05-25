@@ -7,10 +7,16 @@ public import std.file : SpanMode, dirEntries, DirEntry;
 import std.algorithm;
 import std.array;
 
+private string registerStdFunction(alias name)()
+{
+	immutable func = "funcs." ~ name ~ " = &" ~ name ~ ";";
+	return func;
+}
+
 void registerStdFunctions(var funcs)
 {
-	funcs.print = &print;
-	funcs.printLn = &printLn;
+	mixin(registerStdFunction!"print");
+	mixin(registerStdFunction!"printLn");
 }
 
 auto getDirList(const string name, SpanMode mode)
