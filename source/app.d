@@ -1,6 +1,4 @@
 import std.stdio;
-import std.array;
-
 import scriptsystem;
 
 void main(string[] arguments)
