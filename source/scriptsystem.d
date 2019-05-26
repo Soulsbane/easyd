@@ -21,7 +21,7 @@ class ScriptSystem
 
 		registerFunction!"addCommand";
 		registerFunction!"getDubVersion";
-		registerFunction!"getAddtionalCommands";
+		registerFunction!"getAdditionalCommands";
 		registerFunction!"isCommandNameAvailable";
 	}
 
@@ -30,7 +30,7 @@ class ScriptSystem
 		additionalCommands_ = additionalCommands;
 	}
 
-	string[] getAddtionalCommands()
+	string[] getAdditionalCommands()
 	{
 		return additionalCommands_;
 	}
