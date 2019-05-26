@@ -25,7 +25,7 @@ class ScriptSystem
 		registerFunction!"isCommandNameAvailable";
 	}
 
-	void setupAdditionalCommands(string[] additionalCommands)
+	void addAdditionalCommands(string[] additionalCommands)
 	{
 		additionalCommands_ = additionalCommands;
 	}
