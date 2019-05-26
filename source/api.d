@@ -3,18 +3,21 @@ module api;
 import arsd.jsvar;
 import register;
 
-void registerAPIFunctions(var funcs)
+mixin template APIFunctions()
 {
-	mixin(registerFunction!"getDubVersion");
-	mixin(registerFunction!"isInstalled");
-}
+	void registerAPIFunctions()
+	{
+		registerFunction!"getDubVersion";
+		registerFunction!"isInstalled";
+	}
 
-auto getDubVersion()
-{
-	return "1.15";
-}
+	auto getDubVersion()
+	{
+		return "1.15";
+	}
 
-bool isInstalled()
-{
-	return true;
+	bool isInstalled()
+	{
+		return true;
+	}
 }

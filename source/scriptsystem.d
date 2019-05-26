@@ -11,12 +11,13 @@ import utils;
 class ScriptSystem
 {
 	mixin StdFunctions;
+	mixin APIFunctions;
 
 	this()
 	{
 		// Standard Library Functions.
 		registerStdFunctions();
-		registerAPIFunctions(globals_);
+		registerAPIFunctions();
 
 		registerFunction!"addCommand";
 		registerFunction!"getDubVersion";
