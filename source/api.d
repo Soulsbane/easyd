@@ -1,7 +1,6 @@
 module api;
 
 import arsd.jsvar;
-import register;
 
 mixin template APIFunctions()
 {

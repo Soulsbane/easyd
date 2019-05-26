@@ -6,7 +6,6 @@ import std.array;
 public import std.file : SpanMode, dirEntries, DirEntry;
 
 import arsd.jsvar;
-import register;
 
 mixin template StdFunctions()
 {
