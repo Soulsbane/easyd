@@ -82,6 +82,18 @@ class ScriptSystem
 		mixin(func);
 	}
 
+	void runCommand(const string name)
+	{
+		if(name in commands_)
+		{
+			writeln("Found command: ", commands_[name]);
+		}
+		else
+		{
+			writeln("command not found");
+		}
+	}
+
 private:
 	var globals_ = var.emptyObject;
 	string[string] commands_;
