@@ -10,10 +10,12 @@ import utils;
 
 class ScriptSystem
 {
+	mixin StdFunctions;
+
 	this()
 	{
 		// Standard Library Functions.
-		registerStdFunctions(globals_);
+		registerStdFunctions();
 		registerAPIFunctions(globals_);
 
 		registerFunction!"addCommand";

@@ -8,10 +8,23 @@ public import std.file : SpanMode, dirEntries, DirEntry;
 import arsd.jsvar;
 import register;
 
-void registerStdFunctions(var funcs)
+mixin template StdFunctions()
 {
-	mixin(registerFunction!"print");
-	mixin(registerFunction!"printLn");
+	void registerStdFunctions()
+	{
+		registerFunction!"print";
+		registerFunction!"printLn";
+	}
+
+	void print(const string value)
+	{
+		write(value);
+	}
+
+	void printLn(const string value)
+	{
+		writeln(value);
+	}
 }
 
 auto getDirList(const string name, SpanMode mode)
@@ -23,12 +36,3 @@ auto getDirList(const string name, SpanMode mode)
 	return sort(dirs);
 }
 
-void print(const string value)
-{
-	write(value);
-}
-
-void printLn(const string value)
-{
-	writeln(value);
-}
