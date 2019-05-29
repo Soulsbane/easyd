@@ -43,7 +43,6 @@ class ScriptSystem
 		}
 		else
 		{
-			debug writeln("Added Command: ", name);
 			commands_[name] = command;
 		}
 	}

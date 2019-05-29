@@ -18,11 +18,11 @@ void main(string[] arguments)
 		}
 		else // Only command was passed.
 		{
-			writeln("Only the command was passed: ", commandName, " Args: ", commands);
+			//writeln("Only the command was passed: ", commandName, " Args: ", commands);
 		}
 
 		scriptSystem.loadScripts();
-		//scriptSystem.runCommand(commandName);
+		scriptSystem.runCommand(commandName);
 	}
 	else
 	{
