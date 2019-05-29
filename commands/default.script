@@ -3,5 +3,6 @@ printLn(isCommandNameAvailable("release"));
 addCommand("release", "--build=release");
 addCommand("ldc2", "--build=release --compiler=ldc2");
 printLn(isCommandNameAvailable("release"));
+print("DUB Version: ");
 printLn(getDubVersion());
 printLn(getAdditionalCommands());

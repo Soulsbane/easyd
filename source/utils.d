@@ -15,14 +15,14 @@ mixin template StdFunctions()
 		registerFunction!"printLn";
 	}
 
-	void print(const string value)
+	void print(var args...)
 	{
-		write(value);
+		write(args);
 	}
 
-	void printLn(const string value)
+	void printLn(var args...)
 	{
-		writeln(value);
+		writeln(args);
 	}
 }
 
