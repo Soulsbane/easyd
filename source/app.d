@@ -3,28 +3,30 @@ import scriptsystem;
 
 void main(string[] arguments)
 {
-	auto scriptSystem_ = new ScriptSystem;
-	auto commands = arguments[1..$];
+	auto scriptSystem = new ScriptSystem;
+	string[] args = arguments[1..$];
 
-	scriptSystem_.loadScripts();
-
-	if(commands.length >= 1)
+	if(args.length)
 	{
-		immutable string command = commands[0];
-		writeln("Command passed: ", command);
+		string commandName = args[0];
+		string[] commands;
 
-		if(commands.length > 1)
+		if(args.length > 1) // Command has arguments
 		{
-			// NOTE: This is just makes the commands arguments available to scripts.
-			scriptSystem_.addAdditionalCommands(commands[1..$]);
+			commands = args[1..$];
+			scriptSystem.addAdditionalCommands(commands);
 		}
-		else
+		else // Only command was passed.
 		{
-			// No arguments passed after command.
+			writeln("Only the command was passed: ", commandName, " Args: ", commands);
 		}
 
-		scriptSystem_.runCommand(command);
+		scriptSystem.loadScripts();
+		//scriptSystem.runCommand(commandName);
 	}
-
+	else
+	{
+		///No command line arguments
+	}
 }
 
