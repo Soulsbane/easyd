@@ -5,7 +5,7 @@ import std.algorithm;
 import std.array;
 import std.process;
 import std.typecons;
-public import std.file : SpanMode, dirEntries, DirEntry;
+public import std.file : FileException, SpanMode, dirEntries, DirEntry;
 
 import arsd.jsvar;
 
@@ -39,13 +39,20 @@ auto getDirList(const string name, SpanMode mode)
 
 auto launchApplication(const string application, string[] args = [])
 {
+	// FIXME: Should probably rethrow the error!
 	try
 	{
-		return executeShell(application);
+		auto result = executeShell(application);
+		//auto result = execute(application);
+		return result;
 	}
 	catch(ProcessException ex)
 	{
 		return tuple!("status", "output")(-1, ex.msg);
+	}
+	catch(FileException ex)
+	{
+		return tuple!("status", "output")(-2, ex.msg);
 	}
 
 }

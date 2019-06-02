@@ -1,6 +1,8 @@
 module scriptsystem;
 
 import std.stdio;
+import std.path;
+import std.file;
 
 import arsd.script;
 import arsd.jsvar;
@@ -67,7 +69,8 @@ class ScriptSystem
 
 	void loadScripts()
 	{
-		auto files = getDirList("commands", SpanMode.shallow);
+		immutable string commandsPath = buildNormalizedPath(dirName(thisExePath()), "commands");
+		auto files = getDirList(commandsPath, SpanMode.shallow);
 
 		foreach(file; files)
 		{
@@ -85,7 +88,8 @@ class ScriptSystem
 	{
 		if(name in commands_)
 		{
-			writeln("Found command: ", commands_[name]);
+			immutable string command = baseCommand_ ~ " " ~ commands_[name];
+			launchApplication(command);
 		}
 		else
 		{
@@ -97,4 +101,5 @@ private:
 	var globals_ = var.emptyObject;
 	string[string] commands_;
 	string[] additionalCommands_;
+	string baseCommand_ = "dub";
 }
