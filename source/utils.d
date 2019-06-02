@@ -3,6 +3,8 @@ module utils;
 import std.stdio;
 import std.algorithm;
 import std.array;
+import std.process;
+import std.typecons;
 public import std.file : SpanMode, dirEntries, DirEntry;
 
 import arsd.jsvar;
@@ -35,3 +37,15 @@ auto getDirList(const string name, SpanMode mode)
 	return sort(dirs);
 }
 
+auto launchApplication(const string application, string[] args = [])
+{
+	try
+	{
+		return executeShell(application);
+	}
+	catch(ProcessException ex)
+	{
+		return tuple!("status", "output")(-1, ex.msg);
+	}
+
+}
