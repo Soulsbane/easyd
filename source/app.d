@@ -1,4 +1,6 @@
 import std.stdio;
+import std.algorithm;
+
 import scriptsystem;
 
 void main(string[] arguments)
@@ -8,21 +10,25 @@ void main(string[] arguments)
 
 	if(args.length)
 	{
-		string commandName = args[0];
-		string[] commands;
+		immutable string commandName = args[0];
 
-		if(args.length > 1) // Command has arguments
+		if(commandName.startsWith("--"))
 		{
-			commands = args[1..$];
-			scriptSystem.addAdditionalCommands(commands);
+			//writeln("Command line param");
 		}
-		else // Only command was passed.
+		else
 		{
-			//writeln("Only the command was passed: ", commandName, " Args: ", commands);
-		}
+			string[] commands;
 
-		scriptSystem.loadScripts();
-		scriptSystem.runCommand(commandName);
+			if(args.length > 1) // Command has arguments
+			{
+				commands = args[1..$];
+				scriptSystem.addAdditionalCommands(commands);
+			}
+
+			scriptSystem.loadScripts();
+			scriptSystem.runCommand(commandName);
+		}
 	}
 	else
 	{
