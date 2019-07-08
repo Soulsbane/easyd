@@ -25,3 +25,22 @@ mixin template APIFunctions()
 		return true;
 	}
 }
+
+mixin template StdFunctions()
+{
+	void registerStdFunctions()
+	{
+		registerFunction!"print";
+		registerFunction!"printLn";
+	}
+
+	void print(var args...)
+	{
+		write(args);
+	}
+
+	void printLn(var args...)
+	{
+		writeln(args);
+	}
+}
