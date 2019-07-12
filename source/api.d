@@ -56,18 +56,5 @@ mixin template StdFunctions()
 			writeln(s);
 			return var(null);
 		};
-
-		registerFunction!"print";
-		registerFunction!"printLn";
-	}
-
-	void print(var args...)
-	{
-		write(args);
-	}
-
-	void printLn(var args...)
-	{
-		writeln(args);
 	}
 }
