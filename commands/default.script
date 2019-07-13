@@ -1,6 +1,5 @@
-//printLn("Hello from script");
-//printLn(isCommandNameAvailable("release"));
+writeln(isCommandNameAvailable("release"));
 addCommand("release", "--build=release");
 addCommand("ldc2", "--build=release --compiler=ldc2");
-//printLn(isCommandNameAvailable("release"));
+writeln(isCommandNameAvailable("release"));
 writeln(getDubVersion());

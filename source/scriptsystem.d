@@ -9,6 +9,7 @@ import arsd.jsvar;
 
 import api;
 import utils;
+import commands;
 
 class ScriptSystem
 {
@@ -21,50 +22,10 @@ class ScriptSystem
 		registerStdFunctions();
 		registerAPIFunctions();
 
-		registerFunction!"addCommand";
 		registerFunction!"getDubVersion";
-		registerFunction!"getAdditionalCommands";
-		registerFunction!"isCommandNameAvailable";
-	}
-
-	void addAdditionalCommands(string[] additionalCommands)
-	{
-		additionalCommands_ = additionalCommands;
-	}
-
-	string[] getAdditionalCommands()
-	{
-		return additionalCommands_;
-	}
-
-	void addCommand(const string name, const string command)
-	{
-		if(name in commands_)
-		{
-			writeln("Command ", name, "already in use!");
-		}
-		else
-		{
-			commands_[name] = command;
-		}
-	}
-
-	bool isCommandNameAvailable(const string name)
-	{
-		if(name in commands_)
-		{
-			return false;
-		}
-
-		return true;
-	}
-
-	void dumpCommands()
-	{
-		foreach(key, value; commands_)
-		{
-			writeln(key, " => ", value);
-		}
+		registerCommandFunction!"addCommand";
+		registerCommandFunction!"getAdditionalCommands";
+		registerCommandFunction!"isCommandNameAvailable";
 	}
 
 	void loadScripts()
@@ -84,22 +45,18 @@ class ScriptSystem
 		mixin(func);
 	}
 
-	void runCommand(const string name)
+	void registerCommandFunction(alias name)() // FIXME: Temporary. This should be a base class.
 	{
-		if(name in commands_)
-		{
-			immutable string command = baseCommand_ ~ " " ~ commands_[name];
-			launchApplication(command);
-		}
-		else
-		{
-			writeln("command not found");
-		}
+		immutable func = "globals_." ~ name ~ " = &commands_." ~ name ~ ";";
+		mixin(func);
+	}
+
+	Commands getCommands()
+	{
+		return commands_;
 	}
 
 private:
 	var globals_ = var.emptyObject;
-	string[string] commands_;
-	string[] additionalCommands_;
-	string baseCommand_ = "dub";
+	Commands commands_;
 }

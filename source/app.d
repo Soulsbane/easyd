@@ -23,11 +23,11 @@ void main(string[] arguments)
 			if(args.length > 1) // Command has arguments
 			{
 				commands = args[1..$];
-				scriptSystem.addAdditionalCommands(commands);
+				scriptSystem.getCommands().addAdditionalCommands(commands);
 			}
 
 			scriptSystem.loadScripts();
-			scriptSystem.runCommand(commandName);
+			scriptSystem.getCommands().runCommand(commandName);
 		}
 	}
 	else
