@@ -2,28 +2,19 @@ module api;
 
 import arsd.jsvar;
 
-mixin template APIFunctions()
+auto getDubVersion()
 {
-	void registerAPIFunctions()
-	{
-		registerFunction!"getDubVersion";
-		registerFunction!"isInstalled";
-	}
+	import std.process : execute;
+	import std.array : split;
+	import std.algorithm : findSplitBefore;
 
-	auto getDubVersion()
-	{
-		import std.process : execute;
-		import std.array : split;
-		import std.algorithm : findSplitBefore;
+	auto dubOutput = execute(["dub", "--version"]);
+	return dubOutput.output.findSplitBefore(",")[0].split[2];
+}
 
-		auto dubOutput = execute(["dub", "--version"]);
-		return dubOutput.output.findSplitBefore(",")[0].split[2];
-	}
-
-	bool isInstalled()
-	{
-		return true;
-	}
+bool isInstalled()
+{
+	return true;
 }
 
 mixin template StdFunctions()

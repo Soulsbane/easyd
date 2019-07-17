@@ -11,21 +11,14 @@ import api;
 import utils;
 import commands;
 
-class ScriptSystem
+class BaseScriptSystem
 {
 	mixin StdFunctions;
-	mixin APIFunctions;
 
 	this()
 	{
 		// Standard Library Functions.
 		registerStdFunctions();
-		registerAPIFunctions();
-
-		registerFunction!"getDubVersion";
-		registerCommandFunction!"addCommand";
-		registerCommandFunction!"getAdditionalCommands";
-		registerCommandFunction!"isCommandNameAvailable";
 	}
 
 	void loadScripts()
@@ -45,7 +38,21 @@ class ScriptSystem
 		mixin(func);
 	}
 
-	void registerCommandFunction(alias name)() // FIXME: Temporary. This should be a base class.
+private:
+	var globals_ = var.emptyObject;
+}
+
+class ScriptSystem : BaseScriptSystem
+{
+	this()
+	{
+		registerFunction!"getDubVersion";
+		registerCommandFunction!"addCommand";
+		registerCommandFunction!"getAdditionalCommands";
+		registerCommandFunction!"isCommandNameAvailable";
+	}
+
+	void registerCommandFunction(alias name)()
 	{
 		immutable func = "globals_." ~ name ~ " = &commands_." ~ name ~ ";";
 		mixin(func);
@@ -57,6 +64,5 @@ class ScriptSystem
 	}
 
 private:
-	var globals_ = var.emptyObject;
 	Commands commands_;
 }
