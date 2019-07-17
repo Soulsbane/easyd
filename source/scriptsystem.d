@@ -3,6 +3,7 @@ module scriptsystem;
 import std.stdio;
 import std.path;
 import std.file;
+import std.conv;
 
 import arsd.script;
 import arsd.jsvar;
@@ -13,8 +14,6 @@ import commands;
 
 class BaseScriptSystem
 {
-	mixin StdFunctions;
-
 	this()
 	{
 		// Standard Library Functions.
@@ -36,6 +35,33 @@ class BaseScriptSystem
 	{
 		immutable func = "globals_." ~ name ~ " = &" ~ name ~ ";";
 		mixin(func);
+	}
+
+	void registerStdFunctions()
+	{
+		globals_.write._function = (var _this, var[] args) {
+			string s;
+
+			foreach(a; args)
+			{
+				s ~= a.get!string;
+			}
+
+			write(s);
+			return var(null);
+		};
+
+		globals_.writeln._function = (var _this, var[] args) {
+			string s;
+
+			foreach(a; args)
+			{
+				s ~= a.get!string;
+			}
+
+			writeln(s);
+			return var(null);
+		};
 	}
 
 private:
