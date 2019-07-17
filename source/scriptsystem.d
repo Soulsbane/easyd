@@ -37,6 +37,11 @@ class BaseScriptSystem
 		mixin(func);
 	}
 
+	void registerFunction(T)(const string name, T func)
+	{
+		globals_[name] = func;
+	}
+
 	void registerStdFunctions()
 	{
 		globals_.write._function = (var _this, var[] args) {
@@ -73,6 +78,7 @@ class ScriptSystem : BaseScriptSystem
 	this()
 	{
 		registerFunction!"getDubVersion";
+		//registerFunction("addCommand", &commands_.addCommand);
 		registerCommandFunction!"addCommand";
 		registerCommandFunction!"getAdditionalCommands";
 		registerCommandFunction!"isCommandNameAvailable";
