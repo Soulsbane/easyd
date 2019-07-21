@@ -50,12 +50,9 @@ class BaseScriptSystem
 		{
 			string s;
 
-			foreach(a; args)
-			{
-				s ~= a.get!string;
-			}
-
+			args.each!(arg => s ~= arg.get!string);
 			write(s);
+
 			return var(null);
 		};
 
@@ -63,12 +60,9 @@ class BaseScriptSystem
 		{
 			string s;
 
-			foreach(a; args)
-			{
-				s ~= a.get!string;
-			}
-
+			args.each!(arg => s ~= arg.get!string);
 			writeln(s);
+
 			return var(null);
 		};
 	}
