@@ -25,13 +25,13 @@ void main(string[] arguments)
 			if(args.length > 1) // Command has arguments
 			{
 				commands = args[1..$];
-				scriptSystem.getCommands().addAdditionalCommands(commands);
+				scriptSystem.addAdditionalCommands(commands);
 			}
 
 			immutable string commandsPath = buildNormalizedPath(dirName(thisExePath()), "commands");
 
 			scriptSystem.loadScripts(commandsPath);
-			scriptSystem.getCommands().runCommand(commandName);
+			scriptSystem.runCommand(commandName);
 		}
 	}
 	else

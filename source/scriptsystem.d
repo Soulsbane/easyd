@@ -97,11 +97,6 @@ class ScriptSystem : BaseScriptSystem
 		mixin(func);
 	}
 
-	Commands getCommands()
-	{
-		return commands_;
-	}
-
-private:
+	alias commands_ this;
 	Commands commands_;
 }
