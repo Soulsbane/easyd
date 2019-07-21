@@ -2,4 +2,7 @@ writeln(isCommandNameAvailable("release"));
 addCommand("release", "--build=release");
 addCommand("ldc2", "--build=release --compiler=ldc2");
 writeln(isCommandNameAvailable("release"));
-writeln(getDubVersion());
+
+if (isInstalled("dub")) {
+	writeln("DUB Version: ", getDubVersion());
+}

@@ -4,3 +4,4 @@ copyright "Copyright © 2019"
 authors "Paul Crane"
 
 dependency "arsd-official:script" version="*"
+dependency "dpathutils" version="*"

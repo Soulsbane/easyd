@@ -1,6 +1,7 @@
 module api;
 
 import arsd.jsvar;
+import dpathutils.exists;
 
 auto getDubVersion()
 {
@@ -12,7 +13,12 @@ auto getDubVersion()
 	return dubOutput.output.findSplitBefore(",")[0].split[2];
 }
 
-bool isInstalled()
+bool isInstalled(const string executableName)
 {
-	return true;
+	if(isInPath(executableName))
+	{
+		return true;
+	}
+
+	return false;
 }

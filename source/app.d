@@ -4,6 +4,7 @@ import std.path;
 import std.file;
 
 import scriptsystem;
+import api;
 
 void main(string[] arguments)
 {
