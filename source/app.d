@@ -1,5 +1,7 @@
 import std.stdio;
 import std.algorithm;
+import std.path;
+import std.file;
 
 import scriptsystem;
 
@@ -26,7 +28,9 @@ void main(string[] arguments)
 				scriptSystem.getCommands().addAdditionalCommands(commands);
 			}
 
-			scriptSystem.loadScripts();
+			immutable string commandsPath = buildNormalizedPath(dirName(thisExePath()), "commands");
+
+			scriptSystem.loadScripts(commandsPath);
 			scriptSystem.getCommands().runCommand(commandName);
 		}
 	}

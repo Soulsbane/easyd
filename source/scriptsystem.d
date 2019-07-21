@@ -1,9 +1,9 @@
 module scriptsystem;
 
 import std.stdio;
+import std.conv;
 import std.path;
 import std.file;
-import std.conv;
 
 import arsd.script;
 import arsd.jsvar;
@@ -14,16 +14,21 @@ import commands;
 
 class BaseScriptSystem
 {
-	this()
+	void loadScripts(const string scriptsPath = string.init)
 	{
-		// Standard Library Functions.
-		registerStdFunctions();
-	}
+		string paths;
 
-	void loadScripts()
-	{
-		immutable string commandsPath = buildNormalizedPath(dirName(thisExePath()), "commands");
-		auto files = getDirList(commandsPath, SpanMode.shallow);
+		if(scriptsPath)
+		{
+			paths = scriptsPath;
+		}
+		else
+		{
+			paths = buildNormalizedPath(dirName(thisExePath()), "scripts");
+		}
+
+		auto files = getDirList(paths, SpanMode.shallow);
+		registerStdFunctions();
 
 		foreach(file; files)
 		{
