@@ -4,6 +4,7 @@ import std.stdio;
 import std.conv;
 import std.path;
 import std.file;
+import std.algorithm : each;
 
 import arsd.script;
 import arsd.jsvar;
@@ -16,24 +17,20 @@ class BaseScriptSystem
 {
 	void loadScripts(const string scriptsPath = string.init)
 	{
-		string paths;
+		string path;
 
 		if(scriptsPath)
 		{
-			paths = scriptsPath;
+			path = scriptsPath;
 		}
 		else
 		{
-			paths = buildNormalizedPath(dirName(thisExePath()), "scripts");
+			path = buildNormalizedPath(dirName(thisExePath()), "scripts");
 		}
 
-		auto files = getDirList(paths, SpanMode.shallow);
 		registerStdFunctions();
-
-		foreach(file; files)
-		{
-			interpretFile(File(file.name), globals_);
-		}
+		path.getDirList(SpanMode.shallow)
+			.each!(file => interpretFile(File(file.name), globals_));
 	}
 
 	void registerFunction(alias name)()
