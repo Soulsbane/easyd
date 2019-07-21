@@ -44,7 +44,8 @@ class BaseScriptSystem
 
 	void registerStdFunctions()
 	{
-		globals_.write._function = (var _this, var[] args) {
+		globals_.write._function = (var _this, var[] args)
+		{
 			string s;
 
 			foreach(a; args)
@@ -56,7 +57,8 @@ class BaseScriptSystem
 			return var(null);
 		};
 
-		globals_.writeln._function = (var _this, var[] args) {
+		globals_.writeln._function = (var _this, var[] args)
+		{
 			string s;
 
 			foreach(a; args)
