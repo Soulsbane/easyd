@@ -15,6 +15,11 @@ import commands;
 
 class BaseScriptSystem
 {
+	void loadScript(const string scriptName)
+	{
+		interpretFile(File(scriptName), globals_);
+	}
+
 	void loadScripts(const string scriptsPath = string.init)
 	{
 		string path;
@@ -30,7 +35,7 @@ class BaseScriptSystem
 
 		registerStdFunctions();
 		path.getDirList(SpanMode.shallow)
-			.each!(file => interpretFile(File(file.name), globals_));
+			.each!(file => loadScript(file.name));
 	}
 
 	void registerFunction(alias name)()
