@@ -30,7 +30,7 @@ class BaseScriptSystem
 		}
 		else
 		{
-			path = buildNormalizedPath(dirName(thisExePath()), "scripts");
+			path = thisExePath.dirName.buildNormalizedPath("scripts");
 		}
 
 		registerStdFunctions();

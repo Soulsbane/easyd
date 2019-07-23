@@ -29,7 +29,7 @@ void main(string[] arguments)
 				scriptSystem.addAdditionalCommands(commands);
 			}
 
-			immutable string commandsPath = buildNormalizedPath(dirName(thisExePath()), "commands");
+			immutable string commandsPath = thisExePath.dirName.buildNormalizedPath("commands");
 
 			scriptSystem.loadScripts(commandsPath);
 			scriptSystem.runCommand(commandName);
