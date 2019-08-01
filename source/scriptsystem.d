@@ -81,6 +81,7 @@ class ScriptSystem : BaseScriptSystem
 	this()
 	{
 		registerFunction!"getDubVersion";
+		registerFunction!"getDmdVersion";
 		registerFunction!"isInstalled";
 		//registerFunction("addCommand", &commands_.addCommand);
 		registerCommandFunction!"addCommand";

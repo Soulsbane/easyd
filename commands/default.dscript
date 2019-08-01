@@ -7,3 +7,8 @@ if(isInstalled("dub"))
 {
 	writeln("DUB Version: ", getDubVersion());
 }
+
+if(isInstalled("dmd"))
+{
+	writeln("DMD Version: ", getDmdVersion());
+}
