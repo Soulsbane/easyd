@@ -6,10 +6,34 @@ import std.file;
 import scriptsystem;
 import api;
 
+void handleCommand(ScriptSystem scriptSystem, const string commandName, string[] args)
+{
+	immutable string commandsPath = thisExePath.dirName.buildNormalizedPath("commands");
+	string[] commands;
+
+	if(args.length > 1) // Command has arguments
+	{
+		commands = args[1..$];
+		scriptSystem.addAdditionalCommands(commands);
+	}
+
+	scriptSystem.loadScripts(commandsPath);
+
+	if(args.length)
+	{
+		scriptSystem.runCommand(commandName);
+	}
+	else
+	{
+		scriptSystem.runCommand("release");
+	}
+}
+
 void main(string[] arguments)
 {
 	auto scriptSystem = new ScriptSystem;
 	string[] args = arguments[1..$];
+	string defaultCommandName = "release";// FIXME: Temporary. Will  be used to run last run command if no arguments.
 
 	if(args.length)
 	{
@@ -21,24 +45,12 @@ void main(string[] arguments)
 		}
 		else
 		{
-			string[] commands;
-
-			if(args.length > 1) // Command has arguments
-			{
-				commands = args[1..$];
-				scriptSystem.addAdditionalCommands(commands);
-			}
-
-			immutable string commandsPath = thisExePath.dirName.buildNormalizedPath("commands");
-
-			scriptSystem.loadScripts(commandsPath);
-			scriptSystem.runCommand(commandName);
+			handleCommand(scriptSystem, commandName, args);
 		}
 	}
 	else
 	{
-		///No command line arguments
+		handleCommand(scriptSystem, defaultCommandName, args);
 	}
-
 }
 
