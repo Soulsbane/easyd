@@ -1,5 +1,5 @@
 writeln(isCommandNameAvailable("release"));
-addCommand("release", "--build=release");
+addCommand("release", "build --build=release");
 addCommand("ldc2", "--build=release --compiler=ldc2");
 writeln(isCommandNameAvailable("release"));
 

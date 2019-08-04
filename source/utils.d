@@ -21,7 +21,6 @@ auto launchApplication(const string application, string[] args = [])
 	try
 	{
 		auto result = executeShell(application);
-		//auto result = execute(application);
 		return result;
 	}
 	catch(ProcessException ex)

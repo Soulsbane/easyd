@@ -42,7 +42,7 @@ struct Commands
 		if(name in commands_)
 		{
 			immutable string command = baseCommand_ ~ " " ~ commands_[name];
-			launchApplication(command);
+			launchApplication(command); //FIXME: Handle errors better.
 		}
 		else
 		{
