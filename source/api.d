@@ -17,7 +17,7 @@ auto getDubVersion()
 auto getDmdVersion()
 {
 	immutable auto output = execute(["dmd", "--version"]);
-	return output.output.findSplitAfter("v")[1];
+	return output.output.findSplitAfter("v")[1].split("\n")[0];
 }
 
 bool isInstalled(const string executableName)
