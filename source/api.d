@@ -20,6 +20,15 @@ auto getDmdVersion()
 	return output.output.findSplitAfter("v")[1].split("\n")[0];
 }
 
+auto getLdcVersion()
+{
+	immutable auto output = execute(["ldc2", "--version"]);
+	immutable string versionSentence = output.output.split("\n")[0];
+	immutable string finalStr = versionSentence[versionSentence.countUntil("(") + 1 .. versionSentence.countUntil(")")];
+
+	return finalStr;
+}
+
 bool isInstalled(const string executableName)
 {
 	if(isInPath(executableName))

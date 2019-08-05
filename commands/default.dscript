@@ -12,3 +12,9 @@ if(isInstalled("dmd"))
 {
 	writeln("DMD Version: ", getDmdVersion());
 }
+
+if(isInstalled("ldc2"))
+{
+	getLdcVersion();
+	writeln("LDC Version: ", getLdcVersion());
+}
