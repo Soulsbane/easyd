@@ -29,6 +29,21 @@ auto getLdcVersion()
 	return finalStr;
 }
 
+bool isDubInstalled()
+{
+	return isInstalled("dub");
+}
+
+bool isDmdInstalled()
+{
+	return isInstalled("dmd");
+}
+
+bool isLdcInstalled()
+{
+	return isInstalled("ldc2");
+}
+
 bool isInstalled(const string executableName)
 {
 	if(isInPath(executableName))

@@ -3,17 +3,17 @@ addCommand("release", "build --build=release");
 addCommand("ldc2", "--build=release --compiler=ldc2");
 writeln(isCommandNameAvailable("release"));
 
-if(isInstalled("dub"))
+if(isDubInstalled())
 {
 	writeln("DUB Version: ", getDubVersion());
 }
 
-if(isInstalled("dmd"))
+if(isDmdInstalled())
 {
 	writeln("DMD Version: ", getDmdVersion());
 }
 
-if(isInstalled("ldc2"))
+if(isLdcInstalled())
 {
 	getLdcVersion();
 	writeln("LDC Version: ", getLdcVersion());

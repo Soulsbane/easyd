@@ -84,6 +84,9 @@ class ScriptSystem : BaseScriptSystem
 		registerFunction!"getDmdVersion";
 		registerFunction!"getLdcVersion";
 		registerFunction!"isInstalled";
+		registerFunction!"isDubInstalled";
+		registerFunction!"isDmdInstalled";
+		registerFunction!"isLdcInstalled";
 		//registerFunction("addCommand", &commands_.addCommand);
 		registerCommandFunction!"addCommand";
 		registerCommandFunction!"getAdditionalCommands";
