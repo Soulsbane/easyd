@@ -6,8 +6,9 @@ import std.file;
 import scriptsystem;
 import api;
 
-void handleCommand(ScriptSystem scriptSystem, const string commandName, string[] args)
+void handleCommand(const string commandName, string[] args)
 {
+	auto scriptSystem = new ScriptSystem;
 	immutable string commandsPath = thisExePath.dirName.buildNormalizedPath("commands");
 	string[] commands;
 
@@ -31,7 +32,6 @@ void handleCommand(ScriptSystem scriptSystem, const string commandName, string[]
 
 void main(string[] arguments)
 {
-	auto scriptSystem = new ScriptSystem;
 	string[] args = arguments[1..$];
 	string defaultCommandName = "release";// FIXME: Temporary. Will  be used to run last run command if no arguments.
 
@@ -45,12 +45,12 @@ void main(string[] arguments)
 		}
 		else
 		{
-			handleCommand(scriptSystem, commandName, args);
+			handleCommand(commandName, args);
 		}
 	}
 	else
 	{
-		handleCommand(scriptSystem, defaultCommandName, args);
+		handleCommand(defaultCommandName, args);
 	}
 }
 
