@@ -9,11 +9,13 @@ import std.algorithm : each;
 import arsd.script;
 import arsd.jsvar;
 
+import dscriptsystem.base;
+
 import api;
 import utils;
 import commands;
 
-class BaseScriptSystem
+/*class BaseScriptSystem
 {
 	void loadScript(const string scriptName)
 	{
@@ -74,7 +76,7 @@ class BaseScriptSystem
 
 private:
 	var globals_ = var.emptyObject;
-}
+}*/
 
 class ScriptSystem : BaseScriptSystem
 {
@@ -91,6 +93,17 @@ class ScriptSystem : BaseScriptSystem
 		registerCommandFunction!"addCommand";
 		registerCommandFunction!"getAdditionalCommands";
 		registerCommandFunction!"isCommandNameAvailable";
+	}
+
+	void registerFunction(alias name)()
+	{
+		immutable func = "globals_." ~ name ~ " = &" ~ name ~ ";";
+		mixin(func);
+	}
+
+	void registerFunction(T)(const string name, T func)
+	{
+		globals_[name] = func;
 	}
 
 	void registerCommandFunction(alias name)()

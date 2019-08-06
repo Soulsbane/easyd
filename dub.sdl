@@ -5,3 +5,4 @@ authors "Paul Crane"
 
 dependency "arsd-official:script" version="*"
 dependency "dpathutils" version="*"
+dependency "dscriptsystem" version="*"
