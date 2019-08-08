@@ -19,34 +19,16 @@ class ScriptSystem : BaseScriptSystem
 {
 	this()
 	{
-		registerFunction!"getDubVersion";
-		registerFunction!"getDmdVersion";
-		registerFunction!"getLdcVersion";
-		registerFunction!"isInstalled";
-		registerFunction!"isDubInstalled";
-		registerFunction!"isDmdInstalled";
-		registerFunction!"isLdcInstalled";
-		//registerFunction("addCommand", &commands_.addCommand);
-		registerCommandFunction!"addCommand";
-		registerCommandFunction!"getAdditionalCommands";
-		registerCommandFunction!"isCommandNameAvailable";
-	}
-
-	void registerFunction(alias name)()
-	{
-		immutable func = "globals_." ~ name ~ " = &" ~ name ~ ";";
-		mixin(func);
-	}
-
-	void registerFunction(T)(const string name, T func)
-	{
-		globals_[name] = func;
-	}
-
-	void registerCommandFunction(alias name)()
-	{
-		immutable func = "globals_." ~ name ~ " = &commands_." ~ name ~ ";";
-		mixin(func);
+		registerFunction("getDubVersion", &getDubVersion);
+		registerFunction("getDmdVersion", &getDmdVersion);
+		registerFunction("getLdcVersion", &getLdcVersion);
+		registerFunction("isInstalled", &isInstalled);
+		registerFunction("isDubInstalled", &isDubInstalled);
+		registerFunction("isDmdInstalled", &isDmdInstalled);
+		registerFunction("isLdcInstalled", &isLdcInstalled);
+		registerFunction("addCommand", &commands_.addCommand);
+		registerFunction("getAdditionalCommands", &commands_.getAdditionalCommands);
+		registerFunction("isCommandNameAvailable", &commands_.isCommandNameAvailable);
 	}
 
 	alias commands_ this;
