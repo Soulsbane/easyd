@@ -15,6 +15,5 @@ if(isDmdInstalled())
 
 if(isLdcInstalled())
 {
-	getLdcVersion();
 	writeln("LDC Version: ", getLdcVersion());
 }
