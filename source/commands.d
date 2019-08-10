@@ -9,7 +9,7 @@ struct Commands
 	{
 		if(name in commands_)
 		{
-			writeln("Command ", name, "already in use!");
+			writeln("Command ", name, " already in use!");
 		}
 		else
 		{
