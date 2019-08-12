@@ -37,7 +37,7 @@ struct Commands
 		return true;
 	}
 
-	void runCommand(const string name)
+	void runCommand(const string name, string[] args = [])
 	{
 		if(name in commands_)
 		{

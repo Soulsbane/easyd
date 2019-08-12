@@ -12,21 +12,16 @@ void handleCommand(const string commandName, string[] args)
 	immutable string commandsPath = thisExePath.dirName.buildNormalizedPath("commands");
 	string[] commands;
 
-	if(args.length > 1) // Command has arguments
-	{
-		commands = args[1..$];
-		scriptSystem.addAdditionalCommands(commands);
-	}
-
 	scriptSystem.loadScripts(commandsPath);
 
 	if(args.length)
 	{
-		scriptSystem.runCommand(commandName);
+		commands = args[1..$];
+		scriptSystem.runCommand(commandName, commands);
 	}
 	else
 	{
-		scriptSystem.runCommand("release");
+		scriptSystem.runCommand(commandName);
 	}
 }
 
