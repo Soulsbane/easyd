@@ -17,16 +17,6 @@ struct Commands
 		}
 	}
 
-	void addAdditionalCommands(string[] additionalCommands)
-	{
-		additionalCommands_ = additionalCommands;
-	}
-
-	string[] getAdditionalCommands()
-	{
-		return additionalCommands_;
-	}
-
 	bool isCommandNameAvailable(const string name)
 	{
 		if(name in commands_)
@@ -60,6 +50,5 @@ struct Commands
 
 private:
 	string[string] commands_;
-	string[] additionalCommands_;
 	string baseCommand_ = "dub";
 }

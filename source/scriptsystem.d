@@ -27,7 +27,6 @@ class ScriptSystem : BaseScriptSystem
 		registerFunction("isDmdInstalled", &isDmdInstalled);
 		registerFunction("isLdcInstalled", &isLdcInstalled);
 		registerFunction("addCommand", &commands_.addCommand);
-		registerFunction("getAdditionalCommands", &commands_.getAdditionalCommands);
 		registerFunction("isCommandNameAvailable", &commands_.isCommandNameAvailable);
 	}
 
