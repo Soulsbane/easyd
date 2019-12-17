@@ -6,22 +6,27 @@ import std.file;
 import scriptsystem;
 import api;
 
-void handleCommand(const string commandName, string[] args)
+void handleCommand(const string commandName, string[] commands)
 {
 	auto scriptSystem = new ScriptSystem;
 	immutable string commandsPath = thisExePath.dirName.buildNormalizedPath("commands");
-	string[] commands;
 
 	scriptSystem.loadScripts(commandsPath);
 
-	if(args.length)
+	if(commands.length)
 	{
-		commands = args[1..$];
 		scriptSystem.runCommand(commandName, commands);
 	}
 	else
 	{
-		scriptSystem.runCommand(commandName);
+		if(commandName == "list")
+		{
+			scriptSystem.listCommands();
+		}
+		else
+		{
+			scriptSystem.runCommand(commandName);
+		}
 	}
 }
 
@@ -33,15 +38,9 @@ void main(string[] arguments)
 	if(args.length)
 	{
 		immutable string commandName = args[0];
+		string[] commands = args[1..$];
 
-		if(commandName.startsWith("--"))
-		{
-			//writeln("Command line param");
-		}
-		else
-		{
-			handleCommand(commandName, args);
-		}
+		handleCommand(commandName, commands);
 	}
 	else
 	{

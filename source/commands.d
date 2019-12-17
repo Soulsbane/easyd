@@ -32,7 +32,7 @@ struct Commands
 		if(name in commands_)
 		{
 			immutable string command = baseCommand_ ~ " " ~ commands_[name];
-			launchApplication(command); //FIXME: Handle errors better.
+			launchApplication(command);
 		}
 		else
 		{
@@ -40,7 +40,7 @@ struct Commands
 		}
 	}
 
-	void dumpCommands()
+	void listCommands()
 	{
 		foreach(key, value; commands_)
 		{
